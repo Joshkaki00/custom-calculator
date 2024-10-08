@@ -6,6 +6,65 @@
     <title>Custom Calculator</title>
 </head>
 <body>
-    
+    <div class="Title-Page">
+        <h1>Volume Calculator</h1>
+    </div>
+
+    <div id="Calculator-Section">
+        <label>Calculate the volume of:</label>
+        <select name="volume-calc" id="volume-calc">
+            <option value="pyramid-custom">Pyramid: Custom Base</option>
+            <option value="rectangular-prism">Rectangular Prism</option>
+            <option value="cube">Cube</option>
+        </select>
+    </div>
+
+    <div id="pyramid-custom">
+        <input type="number" placeholder="Length">
+        <input type="number" placeholder="Height" id="">
+        <button id="calculate-pyramid">Calculate Pyramid</button>
+    </div>
+
+    <div id="rectangular-prism">
+        <input type="number" placeholder="Length">
+        <input type="number" placeholder="Height" id="">
+        <input type="number" placeholder="Width" id="">
+        <button id="calculate-rectangular-prism">Calculate Rectangular Prism</button>
+    </div>
+
+    <div id="cube">
+        <input type="number" placeholder="Side">
+        <button id="calculate-cube">Calculate Cube</button>
+    </div>
+
+    <script>
+        const pyramidInput = document.querySelector("#pyramid-custom")
+        const rectPrismInput = document.querySelector("#rectangular-prism")
+        const cubeInput = document.querySelector("#cube")
+
+        const volumeCalc = document.querySelector("#volume-calc")
+
+        // Get a reference to the Calculate-Pyramid button
+
+        // Get a reference to the Calculate-Rectangular-Prism button
+
+        // Get a reference to the Calculate-Cube button
+
+        volumeCalc.addEventListener("input", chooseVolume)
+        function chooseVolume(e) {
+            hideInputs()
+            console.log(e.target.value)
+            document.querySelector(`#${e.target.value}`).style.display = "block"
+        }
+
+        function hideInputs(){
+            pyramidInput.style.display = "none"
+            rectPrismInput.style.display = "none"
+            cubeInput.style.display = "none"
+        } 
+        hideInputs()
+
+
+    </script>
 </body>
 </html>
