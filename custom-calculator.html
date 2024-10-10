@@ -23,19 +23,19 @@
         <input type="number" id = "baseLength" placeholder="Length">
         <input type="number" id = "baseWidth" placeholder="Width">
         <input type="number" id = "height" placeholder="Height">
-        <button onclick="handlePyramidCalc">Calculate Pyramid</button>
+        <button id="handle-pyramid-custom-button">Calculate Pyramid</button>
     </div>
 
     <div id="rectangular-prism">
         <input type="number" id = "rect-length" placeholder="Length">
         <input type="number" id = "rect-height" placeholder="Height">
         <input type="number" id = "rect-width" placeholder="Width">
-        <button onclick="handleRectPrismCalc">Calculate Rectangular Prism</button>
+        <button id="handle-rect-prism-button">Calculate Rectangular Prism</button>
     </div>
 
     <div id="cube">
         <input type="number" id = "Side" placeholder= "Side">
-        <button onclick="handleCubeCalc">Calculate Cube</button>
+        <button id="handle-cube-button">Calculate Cube</button>
     </div>
 
     <div id="pyramid-output">
@@ -97,27 +97,53 @@
 
         // Calculates Cube Volume
 
-        function CalculateCube() {
+        function calculateCube() {
             const cubeSide = parseFloat(document.getElementById('Side').value)
 
             const cubeVolume = cubeSide ** 3
-        }
 
+            console.log(cubeVolume)
+
+            cubeOutput.innerHTML = cubeVolume
+        }
+        // handle cube volume
+
+        document.querySelector("#handle-cube-button").addEventListener("click", e => {
+            console.log("handle-cube-button")
+            calculateCube()
+        })
+
+        // handls rectangular prism volume
+
+        document.querySelector("#handle-rect-prism-button").addEventListener("click", e => {
+            console.log("handle-rect-prism-button")
+            calculateRectPrism()
+        })
+
+        // handles pyramid custom volume
+
+        document.querySelector("#handle-rect-prism-button").addEventListener("click", e => {
+            console.log("handle-rect-prism-button")
+            calculateRectPrism()
+        })
+
+        
         // Mainly handles how outputs are displayed
 
-        function handlePyramidCalc() {
-            pyramidOutput.innerHTML = "Total: ≈" + PyramidVolume.toFixed(3) + "cubic units"
-        }
+        //function handlePyramidCalc() {
+            //pyramidOutput.innerHTML = "Total: ≈" + PyramidVolume.toFixed(3) + "cubic units"
+       //}
 
-        function handleRectPrismCalc() {
-            rectangularPrismOutput.innerHTML = "Total: ≈" + rectPrismVolume.toFixed(3) + "cubic units"
-        }
+        //function handleRectPrismCalc() {
+            //rectangularPrismOutput.innerHTML = "Total: ≈" + rectPrismVolume.toFixed(3) + "cubic units"
+        //}
 
-        function handleCubeCalc() {
-            cubeOutput.innerHTML = "Total: " + cubeVolume.toFixed(3) + "cubic units"
-        }
+        //function handleCubeCalc() {
+            //cubeOutput.innerHTML = "Total: " + cubeVolume.toFixed(3) + "cubic units"
+        //}
 
 
+    
         // Hides Inputs and Outputs Before Initiated
 
         function hideInputs(){
@@ -127,9 +153,9 @@
         } 
 
         function hideOutputs() {
-            pyramidOutput.style.display = "none"
-            rectangularPrismOutput.style.display = "none"
-            cubeOutput.style.display = "none"
+            // pyramidOutput.style.display = "none"
+            // rectangularPrismOutput.style.display = "none"
+            // cubeOutput.style.display = "none"
         }
         hideInputs()
         hideOutputs()
