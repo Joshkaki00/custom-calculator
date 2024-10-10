@@ -20,31 +20,44 @@
     </div>
 
     <div id="pyramid-custom">
-        <input type="number" placeholder="Length">
-        <input type="number" placeholder="Height">
-        <button id="calculate-pyramid">Calculate Pyramid</button>
+        <input type="number" id = "baseLength" placeholder="Length">
+        <input type="number" id = "baseWidth" placeholder="Width">
+        <input type="number" id = "height" placeholder="Height">
+        <button onclick="calculatePyramid()">Calculate Pyramid</button>
     </div>
 
     <div id="rectangular-prism">
-        <input type="number" placeholder="Length">
-        <input type="number" placeholder="Height">
-        <input type="number" placeholder="Width">
-        <button id="calculate-rectangular-prism">Calculate Rectangular Prism</button>
+        <input type="number" id = "rect-length" placeholder="Length">
+        <input type="number" id = "rect-height" placeholder="Height">
+        <input type="number" id = "rect-width" placeholder="Width">
+        <button onclick="">Calculate Rectangular Prism</button>
     </div>
 
     <div id="cube">
-        <input type="number" placeholder="Side">
-        <button id="calculate-cube">Calculate Cube</button>
+        <input type="number" id = "Side" placeholder= "Side">
+        <button onclick="">Calculate Cube</button>
     </div>
 
-    <div id="calculate-pyramid-total">
-        
+    <div id="pyramid-output">
+        <h3>Volume: </h3>
+    </div>
+
+    <div id="rectangular-prism-output">
+        <h3>Volume: </h3>
+    </div>
+
+    <div id="cube-output">
+        <h3>Volume: </h3>
     </div>
 
     <script>
         const pyramidInput = document.querySelector("#pyramid-custom")
         const rectPrismInput = document.querySelector("#rectangular-prism")
         const cubeInput = document.querySelector("#cube")
+        const pyramidOutput = document.querySelector("#pyramid-output")
+        const rectangularPrismOutput = document.querySelector("#rectangular-prism-output")
+        const cubeOutput = document.querySelector("#cube-output")
+
 
         const volumeCalc = document.querySelector("#volume-calc")
 
@@ -57,16 +70,58 @@
         volumeCalc.addEventListener("input", chooseVolume)
         function chooseVolume(e) {
             hideInputs()
+            hideOutputs()
             console.log(e.target.value)
             document.querySelector(`#${e.target.value}`).style.display = "block"
         }
+
+        // Calculates Pyramid Volume
+
+        function calculatePyramid() {
+            const baseWidth = parseFloat(document.getElementById('baseWidth').value)
+            const baseLength = parseFloat(document.getElementById('baseLength').value)
+            const height = parseFloat(document.getElementById('height').value);
+
+            const PyramidVolume = (baseWidth * baseLength * height) / 3
+        }
+
+        // Calculates Rectangular Prism Volume
+
+        function calculateRectPrism() {
+            const rectLength = parseFloat(document.getElementById('rect-length').value)
+            const rectWidth = parseFloat(document.getElementById('rect-width').value)
+            const rectHeight = parseFloat(document.getElementById('rect-height').value)
+
+            const rectPrismVolume = rectLength * rectWidth * rectHeight
+        }
+
+        // Mainly handles how outputs are displayed
+
+        function handleCalc() {
+            pyramidOutput.innerHTML = "Total: ≈" + PyramidVolume.toFixed(3) + "cubic units"
+            rectangularPrismOutput.innerHTML = "Total: ≈" + rectPrismVolume.toFixed(3) + "cubic units"
+            
+        }
+
+
+        // Hides Inputs Before Initiated
 
         function hideInputs(){
             pyramidInput.style.display = "none"
             rectPrismInput.style.display = "none"
             cubeInput.style.display = "none"
         } 
+
+        
+
+        function hideOutputs() {
+            pyramidOutput.style.display = "none"
+            rectangularPrismOutput.style.display = "none"
+            cubeOutput.style.display = "none"
+        }
         hideInputs()
+
+        hideOutputs()
 
 
     </script>
