@@ -23,19 +23,19 @@
         <input type="number" id = "baseLength" placeholder="Length">
         <input type="number" id = "baseWidth" placeholder="Width">
         <input type="number" id = "height" placeholder="Height">
-        <button onclick="calculatePyramid()">Calculate Pyramid</button>
+        <button onclick="handlePyramidCalc">Calculate Pyramid</button>
     </div>
 
     <div id="rectangular-prism">
         <input type="number" id = "rect-length" placeholder="Length">
         <input type="number" id = "rect-height" placeholder="Height">
         <input type="number" id = "rect-width" placeholder="Width">
-        <button onclick="">Calculate Rectangular Prism</button>
+        <button onclick="handleRectPrismCalc">Calculate Rectangular Prism</button>
     </div>
 
     <div id="cube">
         <input type="number" id = "Side" placeholder= "Side">
-        <button onclick="">Calculate Cube</button>
+        <button onclick="handleCubeCalc">Calculate Cube</button>
     </div>
 
     <div id="pyramid-output">
@@ -95,16 +95,30 @@
             const rectPrismVolume = rectLength * rectWidth * rectHeight
         }
 
+        // Calculates Cube Volume
+
+        function CalculateCube() {
+            const cubeSide = parseFloat(document.getElementById('Side').value)
+
+            const cubeVolume = cubeSide ** 3
+        }
+
         // Mainly handles how outputs are displayed
 
-        function handleCalc() {
+        function handlePyramidCalc() {
             pyramidOutput.innerHTML = "Total: ≈" + PyramidVolume.toFixed(3) + "cubic units"
+        }
+
+        function handleRectPrismCalc() {
             rectangularPrismOutput.innerHTML = "Total: ≈" + rectPrismVolume.toFixed(3) + "cubic units"
-            
+        }
+
+        function handleCubeCalc() {
+            cubeOutput.innerHTML = "Total: " + cubeVolume.toFixed(3) + "cubic units"
         }
 
 
-        // Hides Inputs Before Initiated
+        // Hides Inputs and Outputs Before Initiated
 
         function hideInputs(){
             pyramidInput.style.display = "none"
@@ -112,17 +126,13 @@
             cubeInput.style.display = "none"
         } 
 
-        
-
         function hideOutputs() {
             pyramidOutput.style.display = "none"
             rectangularPrismOutput.style.display = "none"
             cubeOutput.style.display = "none"
         }
         hideInputs()
-
         hideOutputs()
-
 
     </script>
 </body>
