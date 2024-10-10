@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom Calculator</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="Title-Page">
@@ -38,16 +39,16 @@
         <button id="handle-cube-button">Calculate Cube</button>
     </div>
 
-    <div id="pyramid-output">
-        <h3>Volume: </h3>
+    <div id="pyramid-output" class="output-section">
+        <h3>Pyramid Volume: <span id="pyramid-volume"></span></h3>
     </div>
 
-    <div id="rectangular-prism-output">
-        <h3>Volume: </h3>
+    <div id="rectangular-prism-output" class="output-section">
+        <h3>Rectangular Prism Volume: <span id="rectangular-prism-volume"></span></h3>
     </div>
 
-    <div id="cube-output">
-        <h3>Volume: </h3>
+    <div id="cube-output" class="output-section">
+        <h3>Cube Volume: <span id="cube-volume"></span></h3>
     </div>
 
     <script>
@@ -67,10 +68,24 @@
 
         // Get a reference to the Calculate-Cube button
 
+        // Function to hide all inputs and outputs at start
+        function hideInputsAndOutputs() {
+            pyramidInput.style.display = "none";
+            rectPrismInput.style.display = "none";
+            cubeInput.style.display = "none";
+            pyramidOutput.style.display = "none";
+            rectangularPrismOutput.style.display = "none";
+            cubeOutput.style.display = "none";
+        }
+
+        hideInputsAndOutputs(); // Hide everything initially
+
+
+        // Shows selected section
+        
         volumeCalc.addEventListener("input", chooseVolume)
         function chooseVolume(e) {
-            hideInputs()
-            hideOutputs()
+            hideInputsAndOutputs()
             console.log(e.target.value)
             document.querySelector(`#${e.target.value}`).style.display = "block"
         }
@@ -83,6 +98,9 @@
             const height = parseFloat(document.getElementById('height').value);
 
             const PyramidVolume = (baseWidth * baseLength * height) / 3
+
+            pyramidOutput.style.display = "block"; // Show the output section
+            pyramidOutput.querySelector("#pyramid-volume").textContent = PyramidVolume.toFixed(3) + " cubic units";
         }
 
         // Calculates Rectangular Prism Volume
@@ -93,6 +111,9 @@
             const rectHeight = parseFloat(document.getElementById('rect-height').value)
 
             const rectPrismVolume = rectLength * rectWidth * rectHeight
+
+            rectangularPrismOutput.style.display = "block"; // Show the output section
+            rectangularPrismOutput.querySelector("#rectangular-prism-volume").textContent = rectPrismVolume.toFixed(3) + " cubic units";
         }
 
         // Calculates Cube Volume
@@ -102,9 +123,8 @@
 
             const cubeVolume = cubeSide ** 3
 
-            console.log(cubeVolume)
-
-            cubeOutput.innerHTML = cubeVolume
+            cubeOutput.style.display = "block"; // Show the output section
+            cubeOutput.querySelector("#cube-volume").textContent = cubeVolume.toFixed(3) + " cubic units";
         }
         // handle cube volume
 
@@ -113,7 +133,7 @@
             calculateCube()
         })
 
-        // handls rectangular prism volume
+        // handle rectangular prism volume
 
         document.querySelector("#handle-rect-prism-button").addEventListener("click", e => {
             console.log("handle-rect-prism-button")
@@ -122,9 +142,9 @@
 
         // handles pyramid custom volume
 
-        document.querySelector("#handle-rect-prism-button").addEventListener("click", e => {
-            console.log("handle-rect-prism-button")
-            calculateRectPrism()
+        document.querySelector("#handle-pyramid-custom-button").addEventListener("click", e => {
+            console.log("handle-pyramid-custom-button")
+            calculatePyramid()
         })
 
         
@@ -152,13 +172,7 @@
             cubeInput.style.display = "none"
         } 
 
-        function hideOutputs() {
-            // pyramidOutput.style.display = "none"
-            // rectangularPrismOutput.style.display = "none"
-            // cubeOutput.style.display = "none"
-        }
         hideInputs()
-        hideOutputs()
 
     </script>
 </body>
